@@ -9,11 +9,11 @@ def main():
 
     print "%s, I'm thinking of a number between 1 and 100. Try to guess my number. " % name
 
-    answer = random.randrange(1, 101)
-
     count = 0
 
-    personal_best = []
+    personal_best = 0
+
+    answer = random.randint(1, 100)
 
     while True:
         guess = raw_input("What is your guess?")
@@ -25,7 +25,7 @@ def main():
             guess = int(guess)
 
         if guess > 100 or guess < 1:
-            print "That is not a valid number."
+            print "That number is out of range."
         elif guess > answer:
             print "Too high!"
         elif guess < answer: 
@@ -35,13 +35,14 @@ def main():
             print "Well done, %s! You found my number in %d tries!" % (name, count)
             print "Do you want to play again?"
             print "Type 1 to continue or 2 to exit."
+            
             playagain = raw_input('--> ')
             if playagain == "1":
-                personal_best.append(count)
-                if count < personal_best[0]:
-                    personal_best[0] = count
-                print "Ok, let's play again. Try to beat your record score of %s tries." % personal_best[0]
+                if personal_best == 0 or count < personal_best:
+                    personal_best = count
+                print "Ok, let's play again. Try to beat your record score of %s tries." % personal_best
                 print "%s, I'm thinking of a number between 1 and 100. Try to guess my number" % name
+                answer = random.randint(1, 100)
                 count = 0
             else:
                 print "Thanks for playing!"
@@ -49,5 +50,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    
