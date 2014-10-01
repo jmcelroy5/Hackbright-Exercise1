@@ -9,8 +9,7 @@ def main():
 
     print "%s, I'm thinking of a number between 1 and 100. Try to guess my number. " % name
 
-    # answer = random.randrange(1, 101)
-    answer = 50
+    answer = random.randrange(1, 101)
 
     count = 0
 
@@ -22,19 +21,15 @@ def main():
 
         if not guess.isdigit():
             print "That is not a valid number."
-            continue
-
-        guess = int(guess)
+        else:
+            guess = int(guess)
 
         if guess > 100 or guess < 1:
             print "That is not a valid number."
-            continue
-
-        if guess > answer:
+        elif guess > answer:
             print "Too high!"
         elif guess < answer: 
             print "Too low!"
-       
         else:
             print "Correct! You win."
             print "Well done, %s! You found my number in %d tries!" % (name, count)
